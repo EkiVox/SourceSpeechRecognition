@@ -44,7 +44,7 @@ try:
         cls()
         print("Impossible de comprendre")
 except:
-    print "En revoir !"
+    print "Au revoir !"
 search = os.path.exists("config.yml")
 if search == True:
     with open("config.yml", 'r') as recup:
