@@ -75,20 +75,27 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-with open("config.yml", 'r') as recup:
-    rawconfig = yaml.load(recup)
-print bcolors.OKBLUE + bcolors.BOLD + "[+]" + " écrit le chiffre correspondant à l'action voulu:"
-print bcolors.OKBLUE + "    1.Ajouter une commande"
-print bcolors.OKBLUE + "    2.Supprimer une commande"
-print bcolors.OKBLUE + "    3.Editez une commande"
-print bcolors.FAIL + "    4.Quitter"
-a = raw_input(bcolors.OKBLUE + "[+] Chiffre de l'action: ")
-if a == "1":
-    addcmd()
-elif a == "2":
-    removecmd()
-elif a == "3":
-    editcmd()
-elif a == "4":
-    quit()
-execfile("configurator.py")
+search = os.path.exists("config.yml")
+if search == True:
+    with open("config.yml", 'r') as recup:
+         rawconfig = yaml.load(recup)
+	 print bcolors.OKBLUE + bcolors.BOLD + "[+]" + " écrit le chiffre correspondant à l'action voulu:"
+	 print bcolors.OKBLUE + "    1.Ajouter une commande"
+	 print bcolors.OKBLUE + "    2.Supprimer une commande"
+ 	 print bcolors.OKBLUE + "    3.Editez une commande"
+       	 print bcolors.FAIL + "    4.Quitter"
+	 try:
+	     a = raw_input(bcolors.OKBLUE + "[+] Chiffre de l'action: ")
+    	     if a == "1":
+                  addcmd()
+             elif a == "2":
+                  removecmd()
+             elif a == "3":
+                  editcmd()
+             elif a == "4":
+                  quit()
+             execfile("configurator.py")
+	 except KeyboardInterrupt:
+             print "\nQuit"
+else:
+    print bcolors.OKBLUE,"Le fichier config.yml n'existe pas !"
